@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form class="form-control-plaintext" th:action="@{/users}" method="post" th:object="${newUser}">
+    <label class="col-form-label">
+        Nazwa użytkownika:
+        <input class="input-group-text" type="text" th:field="*{username}">
+        <ul th:if="${#fields.hasErrors('username')}">
+            <li th:each="err:${#fields.errors('username')}" th:text="${err}"></li>
+        </ul>
+    </label>
+    <button class="btn-dark" type="submit">ZAPISZ UŻYTKOWNIKA</button>
+</form>
+    <h1 th:each="user : ${users}" th:text="${user.username} + ${user.authorities}"></h1>
+</body>
+</html>
